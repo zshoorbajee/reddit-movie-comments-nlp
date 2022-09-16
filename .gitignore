@@ -137,6 +137,6 @@ draft*
 scratch_pad.ipynb
 code_snippets.ipynb
 index.html
-name.basics.tsv.gz
+*.gz
 .secret
 learning*
