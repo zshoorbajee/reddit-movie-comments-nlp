@@ -1,6 +1,6 @@
 ## Data Collection
 
-The dataset used in this notebook was compiled over the several Jupyter Notebooks in this directory. You can browse the notebooks for the detailed process. Here is a summary of the work done to collect the data.
+The dataset used in this notebook was compiled over the several Jupyter Notebooks in this directory. You can browse the notebooks for the detailed process. Here is a summary of the work done to collect the [data](../data/).
 
 ### 1. Get movie discussions
 Notebook: [1_getting_movie_discussions.ipynb](1_getting_movie_discussions.ipynb)
