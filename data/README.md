@@ -32,4 +32,9 @@ See the [`compile_and_filter_dataset`](../compile_and_filter_dataset/) directory
 
 * **data_final.csv**
     * Similar to `comments_exploded.csv`, but matched with each movie's IMDb score
-    * Some movie titles from Reddit are cleaned up more to match IMDb title
+    * Some movie titles from Reddit are cleaned up more to match IMDb title.
+
+* **reddit_movie_sentiments.csv**
+    * Use Hugging Face Transformers library.
+    * Use Google Colab for extra computing capacity.
+    * See the notebook [5_get_sentiments.ipynb](../compile_and_filter_dataset/5_get_sentiments.ipynb) for more details.
