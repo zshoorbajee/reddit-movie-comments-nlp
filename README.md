@@ -10,7 +10,7 @@ Flatiron School Data Science: Capstone Project
 - **Author**: Zaid Shoorbajee
 - **Instructor**: Morgan Jones
 - **Pace**: Flex, 40 weeks
-# Premise
+## Premise
 
 This project aims to predict the IMDb rating of movies using comments from Reddit. The point is to help a (fictitious) movie studio anticipate the reception of its movies before release.
 
@@ -18,7 +18,7 @@ The final model chosen for this task is a deep neural network. It takes in text 
 
 The final model was able to predict scores with an average error (RMSE) of 0.57 points on IMDb's 1–10 scale.
 
-For the full 
+For the full analysis and modeling, see the project's main [Jupyter Notebook](./index.ipynb).
 ## Business Understanding <a name="biz"></a>
 
 A movie studio, Cinedistance, wants to know how well its movies will be received by audiences before it releases them. After all the hard work of producing a big-budget movie, there are still many [decisions about the marketing and release of the movie](https://www.nfi.edu/film-marketing/). How much should the studio invest in marketing? Should it release it to a [streaming or theaters](https://www.hollywoodreporter.com/tv/tv-news/netflix-forgoes-wide-release-martin-scorseses-irishman-1234382/)? To make these decisions, it's helpful to know how much audiences will actually like the movie first.
