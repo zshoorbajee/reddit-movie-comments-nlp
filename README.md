@@ -78,9 +78,10 @@ For each movie (i.e. each Reddit comment section), I used a pre-trained setnimen
 
 The result is two features: the proportion of positive and negative comments from each comment section.
 
-<img src="./images/meta_pos.png" alt="Proportion of Positive Comments" width=50%>
+<img src="./images/meta_pos.png" alt="Proportion of Positive Comments" width=65%>
 
-<img src="./images/meta_neg.png" alt="Proportion of Negative Comments" width=50%>
+<img src="./images/meta_neg.png" alt="Proportion of Negative Comments" width=65%>
+
 ### Tokenization & Lemmatization
 
 All Reddit comment sections were tokenized and lemmatized in order to standardize them.
@@ -98,7 +99,7 @@ The chart below shows the top 50 tokens before stop words were removed. Only thr
 
 Some additional words were added to the list of stop words. Because of the context of the project, words like "movie" and "film" probably aren't relevant.
 
-<img src="./images/top_50_tokens.png" alt="Top 50 tokens; mostly stop words" width=75%>
+<img src="./images/top_50_tokens.png" alt="Top 50 tokens; mostly stop words" width=90%>
 
 **This chart shows the top 20 lemmatized tokens, with stop words removed.**
 
@@ -110,11 +111,11 @@ Other data that I can vectorize includes each comment's parts-of-speech. I used 
 
 **Example 1:** "*i can watch batman slowly walking to 4 piano notes all day*"
 
-<img src="./images/POS_example_1.png" alt="POS-tagging example 1" width=75%>
+<img src="./images/POS_example_1.png" alt="POS-tagging example 1" width=90%>
 
 **Example 2:** "*that fight in the dark only being lit up by gunfire was absolutely incredible.*"
 
-<img src="./images/POS_example_2.png" alt="POS-tagging example 2" width=75%>
+<img src="./images/POS_example_2.png" alt="POS-tagging example 2" width=90%>
 
 ### Meta-features
 I was able to engineer more features from each Reddit thread using seemingly arbitrary information from it. Here are the featurs I engineered:
@@ -169,7 +170,7 @@ ___
 * RMSE: 0.5670
 * R-squared: 0.6620
 
-<img src="./images/m11_learning_curves.png" alt="Learning Curves of the Final Model" width=75%>
+<img src="./images/m11_learning_curves.png" alt="Learning Curves of the Final Model" width=90%>
 
 ### Interpretation
 #### Here's what these results mean about the final model:
