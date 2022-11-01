@@ -105,6 +105,13 @@ Some additional words were added to the list of stop words. Because of the conte
 
 <img src="./images/top_20_lemmas_no_sw_horizontal.png" alt="Top 20 lemmas; no stop words" width=75%>
 
+### TF-IDF Vectorization
+The tokenized, lemmatized comment sections underwent TF-IDF vectorization. TF-IDF is a measurement that takes into account the 1) token's frequency within the document (term frequency) and 2) how rare it is for the token to appear in a document (inverse document frequency). 
+
+This chart shows a sample of tokens in the discussion of *The Batman* (2021) and their TF-IDF values.
+
+<img src="./images/batman_tfidf.png" alt="TF-IDF Example - The Batman">
+
 ### POS Tagging
 
 Other data that I can vectorize includes each comment's parts-of-speech. I used SpaCy and Scikit-learn to make count vectors parts of speech in comment section. Here are some examples of what I used SpaCy to identify for vectorization:
