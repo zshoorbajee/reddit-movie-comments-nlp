@@ -154,7 +154,6 @@ The IMDb scores the models are trained on have a degree of variability that can'
 #### Baseline model validation results:
 * RMSE: 0.8071
 * R-squared: 0.2930
-___
 
 ### Final model architecture (Model 11):
 * Input layer: 516 units
@@ -176,8 +175,9 @@ ___
 #### Here's what these results mean about the final model:
 * **Loss (RMSE):** On average the model's predictions on unseen data will be about **0.57 points off** of the true IMDb score.
 * **Performance (R-squared):** The model is able to account for about **66.2% of the variability** in movie IMDb scores.
-## Conclusion 
+___
 
+## Conclusion 
 
 ### Recommendations
 
