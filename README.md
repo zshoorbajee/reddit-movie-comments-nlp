@@ -1,4 +1,3 @@
-**README is a work in progress**
 # **NLP Movie Rater** <a name="home"></a>
 
 ## Using Neural Networks and Reddit Comments to Predict Movie Ratings
@@ -104,6 +103,7 @@ Some additional words were added to the list of stop words. Because of the conte
 **This chart shows the top 20 lemmatized tokens, with stop words removed.**
 
 <img src="./images/top_20_lemmas_no_sw_horizontal.png" alt="Top 20 lemmas; no stop words" width=75%>
+
 ### POS Tagging
 
 Other data that I can vectorize includes each comment's parts-of-speech. I used SpaCy and Scikit-learn to make count vectors parts of speech in comment section. Here are some examples of what I used SpaCy to identify for vectorization:
@@ -115,6 +115,7 @@ Other data that I can vectorize includes each comment's parts-of-speech. I used 
 **Example 2:** "*that fight in the dark only being lit up by gunfire was absolutely incredible.*"
 
 <img src="./images/POS_example_2.png" alt="POS-tagging example 2" width=75%>
+
 ### Meta-features
 I was able to engineer more features from each Reddit thread using seemingly arbitrary information from it. Here are the featurs I engineered:
 * Average character count of comment per discussion
