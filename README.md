@@ -9,7 +9,9 @@ Flatiron School Data Science: Capstone Project
 - **Author**: Zaid Shoorbajee
 - **Instructor**: Morgan Jones
 - **Pace**: Flex, 40 weeks
+
 [Repository Navigation ⬇️](#nav)
+
 ## Premise <a name="Premise"></a>
 
 This project aims to predict the IMDb rating of movies using comments from Reddit. The point is to help a (fictitious) movie studio anticipate the reception of its movies before release.
@@ -108,7 +110,7 @@ Some additional words were added to the list of stop words. Because of the conte
 ### TF-IDF Vectorization
 The tokenized, lemmatized comment sections underwent TF-IDF vectorization. TF-IDF is a measurement that takes into account the 1) token's frequency within the document (term frequency) and 2) how rare it is for the token to appear in a document (inverse document frequency). 
 
-This chart shows a sample of tokens in the discussion of *The Batman* (2021) and their TF-IDF values.
+This chart shows a sample of tokens in the discussion of *The Batman* (2022) and their TF-IDF values.
 
 <img src="./images/batman_tfidf.png" alt="TF-IDF Example - The Batman">
 
