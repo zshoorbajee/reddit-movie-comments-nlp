@@ -131,6 +131,7 @@ dmypy.json
 # Project specific
 github.pdf
 stuff_to_ignore
+images/clear
 sandbox*
 draft*
 scratch_pad.ipynb

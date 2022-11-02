@@ -198,6 +198,8 @@ As discussed earlier, the movie studio Cinedistance wants to use a focus group's
 
 The model's output is an IMDb score that is expected to be, on average, within 0.57 points of a given movie's future IMDb score if it were released in its current state. The studio can then use that score to inform its decision-making around the movie's marketing, release, and possible changes to the movie.
 
+If the studio wants to know the movie's reception with different demographics (age ranges, gender identities, etc.), it can segement the feedback and get a different IMDb score for each group. This can help decide who to market the movie to.
+
 The studio also has qualitative feedback on its movie alongside the predicted score. If the score is particularly low, the studio can review that feedback that the focus group provided and identify potential improvements. This could lead to re-shoots or re-edits that would hopefully improve the movie. 
 
 Bear in mind that the average IMDb score from the dataset is about 6.5. It's up to the studio how much higher than this score it wants its movie to be before release — or how much lower it should be before taking drastic measures like scrapping the movie.
