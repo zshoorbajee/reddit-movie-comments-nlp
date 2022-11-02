@@ -72,11 +72,11 @@ ___
 * **Minimum: 2.8**
 * **Maximum: 8.5**
 
-<img src="./images/IMDb_distribution.png" alt="Distribution of IMDb Scores" width=75%>
+<img src="./images/IMDb_distribution_w_mean.png" alt="Distribution of IMDb Scores" width=75%>
 
 <!-- Distribution of comments??? -->
 ### Sentiment Score
-For each movie (i.e. each Reddit comment section), I used a pre-trained setniment analysis model to label each comment as positive, negative, or neutral. I the used [Hugging Face](https://huggingface.co/docs/transformers/index) Transformers library, specifically with his model: [cardiffnlp/twitter-roberta-base-sentiment](huggingface.co/cardiffnlp/twitter-roberta-base-sentiment). It is a a roBERTa-base model trained on about 58 million tweets. 
+For each movie (i.e. each Reddit comment section), I used a pre-trained setniment analysis model to label each comment as positive, negative, or neutral. I then used [Hugging Face](https://huggingface.co/docs/transformers/index) Transformers library, specifically with his model: [cardiffnlp/twitter-roberta-base-sentiment](huggingface.co/cardiffnlp/twitter-roberta-base-sentiment). It is a a roBERTa-base model trained on about 58 million tweets. 
 
 The result is two features: the proportion of positive and negative comments from each comment section.
 
@@ -127,11 +127,15 @@ Other data that I can vectorize includes each comment's parts-of-speech. I used 
 <img src="./images/POS_example_2.png" alt="POS-tagging example 2" width=90%>
 
 ### Meta-features
-I was able to engineer more features from each Reddit thread using seemingly arbitrary information from it. Here are the featurs I engineered:
+I was able to engineer more features from each Reddit thread using seemingly arbitrary information from it. Here are the features I engineered:
 * Average character count of comment per discussion
 * Mean length of lemmas in discussion
 * Proportion of lemmas within each discussion that are unique
 * Proportion of stop words
+
+<img src="./images/meta_lemma_length.png" alt="Mean Lemma Length" width=65%>
+
+
 ### Final Dataset
 The preprocessed dataset has 515 features:
 
