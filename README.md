@@ -33,7 +33,7 @@ ___
 
 ### Dataset
 
-Movie fans do the type of commentary that Cinedistance is looking for everyday in places like the [Reddit community r/movies](reddit.com/r/movies). On **r/movies**, Reddit users share news and opinions about movies. Additionally, for most major movies that come out, the subreddit hosts an official discussion of the movie. These official discussions contains text data that can be the basis to train an ML model to predict IMDb scores.
+Movie fans do the type of commentary that Cinedistance is looking for everyday in places like the [Reddit community r/movies](reddit.com/r/movies). On **r/movies**, Reddit users share news and opinions about movies. Additionally, for most major movies that come out, the subreddit hosts an official discussion of the movie. These official discussions contain text data that can be the basis to train an ML model to predict IMDb scores.
 
 Reddit has an API that allows developers to scrape such information. The [PRAW library](https://praw.readthedocs.io/) simplifies this, acting as a wrapper for the API. Using PRAW, I scraped from r/movies the **highest-voted 100 comments of as many official movie discussions still indexed on Reddit**. Some discussions had fewer than 100 comments. I also downloaded [freely available ratings  data from IMDb](https://www.imdb.com/interfaces/) and matched scores to r/movies discussions.
 
@@ -101,16 +101,16 @@ After tokenizing, it's also important to remove stop words, which often don't co
 
 The chart below shows the top 50 tokens before stop words were removed. Only three tokens are not in the original stop word list.
 
-Some additional words were added to the list of stop words. Because of the context of the project, words like "movie" and "film" probably aren't relevant.
+Some additional words were added to the list of stop words. Words like "movie" and "film" probably won't add much meaning to a model because of how ubiquitous they are in this corpus.
 
 <img src="./images/top_50_tokens.png" alt="Top 50 tokens; mostly stop words" width=90%>
 
 **This chart shows the top 20 lemmatized tokens, with stop words removed.**
 
-<img src="./images/top_20_lemmas_no_sw_horizontal.png" alt="Top 20 lemmas; no stop words" width=75%>
+<img src="./images/top_20_lemmas_no_sw.png" alt="Top 20 lemmas; no stop words" width=75%>
 
 ### TF-IDF Vectorization
-The tokenized, lemmatized comment sections underwent TF-IDF vectorization. TF-IDF is a measurement that takes into account the 1) token's frequency within the document (term frequency) and 2) how rare it is for the token to appear in a document (inverse document frequency). 
+The tokenized, lemmatized comment sections underwent TF-IDF vectorization. TF-IDF is a measurement that takes into account the 1) token's frequency within the Reddit discussion (term frequency) and 2) how rare it is for the token to appear in a Reddit discussion (inverse document frequency). 
 
 This chart shows a sample of tokens in the discussion of *The Batman* (2022) and their TF-IDF values.
 
@@ -148,27 +148,34 @@ The preprocessed dataset has 515 features:
 ___
 ## Modeling <a name="modeling"></a>
 
-This project ultimately is a **regression** task. An untuned linear regression model was used as a **baseline**. I then used [TensorFlow through the Keras interface](https://www.tensorflow.org/api_docs/python/tf/keras) in order to build various **deep neural networks (DNNs)**. This was an iterative process where I xperimented with the number of **layers, regularization, and activation functions** like ReLU and ELU.
+This project ultimately is a **regression** task. An untuned linear regression model was used as a **baseline**. I then used [TensorFlow through the Keras interface](https://www.tensorflow.org/api_docs/python/tf/keras) in order to build various **deep neural networks (DNNs)**. This was an iterative process where I experimented with the number of **layers, regularization, and activation functions** like ReLU and ELU.
 
 The data was split into train, validation, and test sets (before pre-processing, to avoid data leakage). The models were trained on the **training set** and the final model was chosen based on its generalizability and performance on the **validation set**. The models were configured to minimize mean squared error (MSE) and stop running if that hasn't improved in 50 epochs. The final model was evaluated based on its performance on the **test set**.
 
-##### Note: Regression, assumptions, inferences, and predictions
+#### Note: Regression, assumptions, inferences, and predictions
 
-Often, when predicting a continuous variable such as IMDb score, linear regression is used. This is a basic machine learning task that tries to find an optimal linear relationship between the predictors and the target. Linear regression stipulates several statistical assumptions such as independence of observations, homoscedasticity, no multicollinearity, and others. These assumptions are necessary when needing to make inferences about how individual predictors influence the target. However in a modeling context, there is less of a concern about making such inferences and [more of an emphasis on making accurate predictions](https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full). For that reason, I haven't checked for any of the assumptions for linear or non-linear regression. Considering how messy NLP is, I highly doubt this data would satisfy them. I am simply interpreting and evaluating how well the models can predict a movie rating. In other words, this is a black [box model approach](https://towardsdatascience.com/machine-learning-interpretability-techniques-662c723454f3).
+> Often, when predicting a continuous variable such as IMDb score, linear regression is used. This is a basic machine learning task that tries to find an optimal linear relationship between the predictors and the target. Linear regression stipulates several statistical assumptions such as independence of observations, homoscedasticity, no multicollinearity, and others. These assumptions are necessary when needing to make inferences about how individual predictors influence the target. However in a modeling context, there is less of a concern about making such inferences and [more of an emphasis on making accurate predictions](https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full). For that reason, I haven't checked for any of the assumptions for linear or non-linear regression. Considering how messy NLP is, I highly doubt this data would satisfy them. I am simply interpreting and evaluating how well the models can predict a movie rating. In other words, this is a [black box model approach](https://towardsdatascience.com/machine-learning-interpretability-techniques-662c723454f3).
 
 ### Scoring and Evaluation
 
 The IMDb scores the models are trained on have a degree of variability that can't be accounted for 100% of the time with predictions. Two main metrics tell us how well the model is performing:
 
-* **R-squared** tells us what percent of the variability of the target variable the model accounts for
+* **R-squared** tells us what percent of the variability of the target variable the model accounts for.
 * **Root mean squared error (RMSE)** measures average distance of predictions from the true target values. RMSE is the same units as the target variable.
 
 ### Baseline model:
 * The baseline model is a simple, untuned linear regression model using Scikit-learn.
 
-#### Baseline model validation results:
+#### Baseline model results:
+Training:
+* RMSE: 0.2538
+* R-squared: 0.9156
+
+Validation:
 * RMSE: 0.8071
 * R-squared: 0.2930
+
+The baseline performance is not amazing, and there is clear overfitting. But it's impressive to see an untuned linear regression model do this well with a relatively complex dataset. 
 
 ### Final model architecture (Model 11):
 * Input layer: 516 units
@@ -180,9 +187,21 @@ The IMDb scores the models are trained on have a degree of variability that can'
 * Optimizer: Adam
 * Loss: Mean Squared Error (MSE)
 
-#### Final model test results
+#### Final model results:
+
+Training:
+* RMSE: 0.1559
+* R-squared: 0.9681
+
+Validation:
+* RMSE: 0.5619
+* R-squared: 0.6573
+
+🌟 Test: 🌟
 * RMSE: 0.5670
 * R-squared: 0.6620
+
+Model 11 had a good balance of reducing overfitting and a pushing up R-squared in its validation results, so it was chosen as the final model.
 
 <img src="./images/m11_learning_curves.png" alt="Learning Curves of the Final Model" width=90%>
 
@@ -204,11 +223,11 @@ If the studio wants to know the movie's reception with different demographics (a
 
 The studio also has qualitative feedback on its movie alongside the predicted score. If the score is particularly low, the studio can review that feedback that the focus group provided and identify potential improvements. This could lead to re-shoots or re-edits that would hopefully improve the movie. 
 
-Bear in mind that the average IMDb score from the dataset is about 6.5. It's up to the studio how much higher than this score it wants its movie to be before release — or how much lower it should be before taking drastic measures like scrapping the movie.
+Bear in mind that the average IMDb score from the dataset is about 6.5. It's up to the studio how high it wants its movie score to be before release — or how low it would need to be to take drastic measures like scrapping the movie.
 
 ### Limitations
 
-The models in this project are trained on 922 movies that were discussed on the Reddit community r/movies. This subreddit holds official discussions of many major releases, including big budget blockbusters, international movies, and art house movies. But this is still probably not a representative sample for all movies. Independent, low-budget films don't often get official discussions, for example. Thus, this model, will probably only produce accurate results for large, established movie studios. Additionally the r/movies subreddit has been around since 2008, but the final model is only trained on movies discussed between 2016 and 2022, since that was what was available to request through Reddit's API. A larger, more diverse sample of movie discussions to train on would make this model better-suited to rate more types of movies.
+The **r/movies** subreddit holds official discussions of many major releases, including big budget blockbusters, international movies, and art house movies. But this is still probably not a representative sample for all movies. Independent, low-budget films don't often get official discussions, for example. Thus, this model, will probably only produce accurate results for large, established movie studios. Additionally the r/movies subreddit has been around since 2008, but I was only able to train on 922 movies discussed between 2016 and 2022, since that was what was available to request through Reddit's API. A larger, more diverse sample of movie discussions to train on would make this model better-suited to rate broader array of movies.
 
 ### Future Work
 
@@ -240,13 +259,16 @@ As mentioned in "Limitations", the model is limited by the data that was availab
 
 The website [Letterboxd](https://letterboxd.com/), for example, is a social media website dedicated to reviewing and discussing movies. It has a much thorougher catalog of movies, its own rating system, and an API. Using Letterboxd as an alternative to Reddit for this project could mean training a more robust model on thousands of movies, rather than just over 900.
 
-#### For more information
+It could also be worth exploring if a similar approach can be applied to comments on trailers posted to YouTube. When a  studio releases a trailer, it might have several hundred comments within hours. Can those comments be used to predict a movie’s critical reception?
+The current dataset and model aren’t configured to be used in this way, but the approach can be tweaked in order to try it.
 
-You can see the full analysis in this [Jupyter Notebook](./index.ipynb). A less technnical presentation about the findings can be found [here](./Presentation.pdf).
+### For more information
+
+You can see the full analysis in this [Jupyter Notebook](./index.ipynb). A less technnical presentation about the findings can be found [here](./presentation.pdf).
 
 For any questions or feedback, you can contact me [here](https://zaid.fyi/contact/).
 
-#### References <a name="references"></a>
+### References <a name="references"></a>
 - [Manmohan Singh -- Discover the Sentiment of Reddit Subgroup using RoBERTa Model](https://towardsdatascience.com/discover-the-sentiment-of-reddit-subgroup-using-roberta-model-10ab9a8271b8)
 - [Donghyun Suh -- Sentiment Analysis of Reddit Comments on Russia-Ukraine War with Python](https://medium.com/@suhdong21/sentiment-analysis-of-reddit-comments-on-russia-ukraine-war-with-python-a3632994942b)
 - [Michael Grogan -- Regression-based neural networks: Predicting Average Daily Rates for Hotels](https://towardsdatascience.com/regression-based-neural-networks-with-tensorflow-v2-0-predicting-average-daily-rates-e20fffa7ac9a)
@@ -257,8 +279,9 @@ For any questions or feedback, you can contact me [here](https://zaid.fyi/contac
 - [Lars Hulstaert -- Black-box vs. white-box models](https://towardsdatascience.com/machine-learning-interpretability-techniques-662c723454f3)
 - [Machine Learning Mastery -- Dropout Regularization in Deep Learning Models With Keras](https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/)
 - [Machine Learning Mastery -- How to use Learning Curves to Diagnose Machine Learning Model Performance](https://machinelearningmastery.com/learning-curves-for-diagnosing-machine-learning-model-performance/)
+- [Leo Breiman -- Statistical Modeling: The Two Cultures](https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full)
 
-#### Repository Navigation <a name="nav"></a>
+### Repository Navigation <a name="nav"></a>
 * [Python Environment](./capstone-env.yml)
 * [Data collection and cleaning process](./compile_and_filter_dataset/)
     * Contains several notebooks where the process of collecting data from  Reddit and IMDb is outlined.
