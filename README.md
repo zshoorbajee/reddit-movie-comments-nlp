@@ -14,7 +14,7 @@ Flatiron School Data Science: Capstone Project
 
 ## Premise <a name="Premise"></a>
 
-This project aims to predict the IMDb rating of movies using comments from Reddit. The point is to help a (fictitious) movie studio anticipate the reception of its movies before release.
+This project aims to predict the IMDb rating of movies using comments from Reddit, as well as understand audiences' common complaints about bad movies. The point is to help a (fictitious) movie studio anticipate the reception of its movies before release and plan accordingly.
 
 The final model chosen for this task is a deep neural network. It takes in text data that has pre-processed with natural language processing methods and outputs an IMDb score.
 
@@ -23,9 +23,9 @@ The final model was able to predict scores with an average error (RMSE) of 0.57 
 For the full analysis and modeling, see the project's main [Jupyter Notebook](./index.ipynb).
 ## Business Understanding <a name="biz"></a>
 
-A movie studio, Cinedistance, wants to know how well its movies will be received by audiences before it releases them. After all the hard work of producing a big-budget movie, there are still many [decisions about the marketing and release of the movie](https://www.nfi.edu/film-marketing/). How much should the studio invest in marketing? Should it release it to a [streaming or theaters](https://www.hollywoodreporter.com/tv/tv-news/netflix-forgoes-wide-release-martin-scorseses-irishman-1234382/)? To make these decisions, it's helpful to know how much audiences will actually like the movie first.
+A movie studio, Cinedistance, wants to identify areas of improvement for its movies before it releases them. After all the hard work of producing a big-budget movie, there are still many decisions to make. Are any scene cuts or [reshoots](https://thedirect.com/article/doctor-strange-2-reshoots-changed-movie) necessary? How much should the studio invest in marketing? Should it release it to a [streaming or theaters](https://www.cnbc.com/2019/11/07/why-netflix-isnt-giving-scorseses-the-irishman-a-wider-release.html)? To make these decisions, it's helpful to know how much audiences will actually like the movie first.
 
-Cinedistance wants to get qualitative comments from average moviegoers *before* a movie's official release. It is also employing a data scientist to use these comments to predict a rating for the movie, like an IMDb score. It's piloting a program where the movie is released to a focus group of about 100 average moviegoers. These viewers are asked to sign an NDA, watch the movie, and submit their thoughts about the movie as if they are commenting on an internet comment section.
+Cinedistance is piloting a program where its movies are released early to a focus group of about 100 average moviegoers. These viewers are asked to sign an NDA, watch the movie, and submit their thoughts about the movie as if they are commenting on an internet comment section. It is also employing a data scientist to use these comments to predict a rating for the movie, like an IMDb score. It also wants insights from this text data about areas of improvement.
 
 The task of the data scientist is to apply natural language processing (NLP) and machine learning (ML) to the focus group's comments in order to predict a movie's IMDb score. These qualitative comments and predicted score can inform Cinedistance's decision-making about the movie's areas of improvement, marketing, and distribution. The studio may decide to do re-shoots, re-edits, or even [kill the movie](https://variety.com/2022/film/news/batgirl-not-released-warner-bros-hbo-max-1235331897/).
 ___
@@ -178,14 +178,18 @@ Validation:
 The baseline performance is not amazing, and there is clear overfitting. But it's impressive to see an untuned linear regression model do this well with a relatively complex dataset. 
 
 ### Final model architecture (Model 11):
-* Input layer: 516 units
-* Three hidden layers. Each layer has 2/3 the number of nodes as the previous
+* Input layer: 515 units
+* First hidden layer: 516 units (ELU)
+    * Activation: Exponential Linear Unit (ELU)
+* Two additional hidden layers. Each layer has 2/3 the number of nodes as the previous
     * Activation: Exponential Linear Unit (ELU)
 * Dropout regularizarion: 20% dropout between each layer
 * Output layer: 1 unit
     * Activation: Linear
 * Optimizer: Adam
 * Loss: Mean Squared Error (MSE)
+
+<img src="./images/m11_architecture.png" alt="summary of final model" width=60%>
 
 #### Final model results:
 
