@@ -119,7 +119,7 @@ dependencies:
   - numpy=1.23.2=py38h223ccf5_0
   - openjpeg=2.5.0=hc9384bd_1
   - openpyxl=3.0.10=py38h91455d4_1
-  - openssl=1.1.1q=h8ffe710_0
+  - openssl=1.1.1s=hcfcfb64_0
   - packaging=21.3=pyhd8ed1ab_0
   - pandas=1.4.3=py38hcc40339_0
   - pandoc=2.19.2=h57928b3_0
@@ -210,6 +210,7 @@ dependencies:
   - widgetsnbextension=4.0.3=pyhd8ed1ab_0
   - win_inet_pton=1.1.0=py38haa244fe_4
   - winpty=0.4.3=4
+  - wordcloud=1.8.2.2=py38h91455d4_1
   - xorg-libxau=1.0.9=hcd874cb_0
   - xorg-libxdmcp=1.1.3=hcd874cb_0
   - xz=5.2.6=h8d14728_0
